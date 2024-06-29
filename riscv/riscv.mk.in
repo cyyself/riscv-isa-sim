@@ -943,6 +943,19 @@ riscv_insn_ext_cmo = \
 	cbo_inval \
 	cbo_zero \
 
+riscv_insn_ext_zicldst = \
+	clb \
+	clbu \
+	cld \
+	clh \
+	clhu \
+	clw \
+	clwu \
+	csb \
+	csd \
+	csh \
+	csw \
+
 riscv_insn_ext_zicond = \
 	czero_eqz \
 	czero_nez \
@@ -1115,6 +1128,7 @@ riscv_insn_list = \
 	$(riscv_insn_ext_zce) \
 	$(riscv_insn_ext_zfh) \
 	$(riscv_insn_ext_zfh_zfa) \
+	$(riscv_insn_ext_zicldst) \
 	$(riscv_insn_ext_zicond) \
 	$(riscv_insn_ext_zvk) \
 	$(riscv_insn_priv) \

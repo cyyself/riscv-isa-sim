@@ -1982,6 +1982,21 @@ void disassembler_t::add_instructions(const isa_parser_t* isa)
     DISASM_INSN("cbo.zero", cbo_zero, 0, {&base_only_address});
   }
 
+  if (isa->extension_enabled(EXT_ZICLDST)) {
+    DEFINE_XLOAD(clb)
+    DEFINE_XLOAD(clbu)
+    DEFINE_XLOAD(clh)
+    DEFINE_XLOAD(clhu)
+    DEFINE_XLOAD(clw)
+    DEFINE_XLOAD(clwu)
+    DEFINE_XLOAD(cld)
+
+    DEFINE_XSTORE(csb)
+    DEFINE_XSTORE(csh)
+    DEFINE_XSTORE(csw)
+    DEFINE_XSTORE(csd)
+  }
+
   if (isa->extension_enabled(EXT_ZICOND)) {
     DEFINE_RTYPE(czero_eqz);
     DEFINE_RTYPE(czero_nez);
@@ -2249,7 +2264,7 @@ disassembler_t::disassembler_t(const isa_parser_t *isa)
 
   // next-highest priority: other instructions in same base ISA
   std::string fallback_isa_string = std::string("rv") + std::to_string(isa->get_max_xlen()) +
-    "gqcvh_zfh_zfa_zba_zbb_zbc_zbs_zcb_zicbom_zicboz_zicond_zk_zks_svinval_"
+    "gqcvh_zfh_zfa_zba_zbb_zbc_zbs_zcb_zicbom_zicboz_zicldst_zicond_zk_zks_svinval_"
     "zcmop_zimop_zawrs_zicfiss_zicfilp_zvknc_zvkg_zvfbfmin_zvfbfwma_zfbfmin";
   isa_parser_t fallback_isa(fallback_isa_string.c_str(), DEFAULT_PRIV);
   add_instructions(&fallback_isa);
